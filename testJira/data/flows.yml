@@ -25,4 +25,14 @@ flows:
           - else:
             - action: utter_ticket_not_created
               next: END
+
+
+  list_jira_tickets_due_today:
+    description: Help users list all Jira tickets due today.
+    steps:
+      - action: list_jira_tickets_due_today
+      - action: utter_jira_tickets_due_today
+        next: END
+
+        
               
