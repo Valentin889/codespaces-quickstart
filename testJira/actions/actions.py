@@ -21,3 +21,15 @@ class ActionCheckSufficientFunds(Action):
         transfer_amount = tracker.get_slot("amount")
         has_sufficient_funds = transfer_amount <= balance
         return [SlotSet("has_sufficient_funds", has_sufficient_funds)]
+
+
+# Minimal custom action code
+class create_jira_ticket(Action):
+    def name(self):
+        return "create_jira_ticket"
+
+    def run(self, dispatcher, tracker, domain):
+        # Example: call an API to see if there's availability
+        is_created = True
+        # Return the result in a slot so the flow can branch deterministically
+        return [SlotSet("is_created", is_created)]

@@ -1,5 +1,8 @@
 version: "3.1"
 
+actions:
+  - create_jira_ticket
+
 slots:
   recipient:
     type: text
@@ -9,6 +12,28 @@ slots:
     type: float
     mappings:
       - type: from_llm
+
+#Jira ticket related slots
+  ticket_title:
+    type: text
+    mappings:
+      - type: from_llm
+
+  ticket_description:
+    type: text
+    mappings:
+      - type: from_llm
+      
+  ticket_end_date:
+    type: text
+    mappings:
+      - type: from_llm
+
+  is_created:
+    type: bool
+    influence_conversation: false
+
+
 
 responses:
   utter_ask_recipient:
@@ -35,4 +60,20 @@ responses:
           Suggested AI Response:
 
 
+  utter_ask_ticket_title:
+    - text: "Please provide the title for the Jira ticket."
+
+  utter_ask_ticket_description:
+    - text: "Please provide a description for the Jira ticket."
+
+  utter_ask_ticket_end_date:
+    - text: "Please provide the end date for the Jira ticket."
+
+  utter_ticket_created:
+    - text: "Your Jira ticket has been created successfully with the title: {ticket_title}."
+
+  utter_ticket_not_created:
+    - text: "Sorry, I couldn't create your Jira ticket. Please try again later."
+
+    
           

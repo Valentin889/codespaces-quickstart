@@ -6,3 +6,23 @@ flows:
       - collect: amount
         description: the number of US dollars to send
       - action: utter_transfer_complete
+
+  create_jira_ticket:
+    description: Help users create a Jira ticket.
+    steps:
+      - collect: ticket_title
+        description: The title of the Jira ticket
+      - collect: ticket_description
+        description: The description of the Jira ticket
+      - collect: ticket_end_date
+        description: The end date of the Jira ticket
+      - action: create_jira_ticket
+        next:
+          - if: slots.is_created
+            then:
+              - action: utter_ticket_created
+                next: END
+          - else:
+            - action: utter_ticket_not_created
+              next: END
+              
