@@ -14,6 +14,10 @@ slots:
       - type: from_llm
 
 #Jira ticket related slots
+  ticket_key:
+    type: text
+    influence_conversation: false
+    
   ticket_title:
     type: text
     mappings:
