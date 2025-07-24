@@ -1,0 +1,22 @@
+flows:
+  transfer_money:
+    description: Help users send money to friends and family.
+    steps:
+      - collect: recipient
+      - collect: amount
+        description: the number of US dollars to send
+      - action: utter_transfer_complete
+  block_card:
+    description: Block a user's credit card when requested
+    steps:
+      - collect: card_number
+        description: “The 16-digit card number to block”
+      - action: check_card_availability
+        next:
+          - if: slots.has_availability
+            then:
+              - action: utter_card_blocked
+                next: END
+          - else:
+            - action: utter_card_not_blocked
+              next: END
